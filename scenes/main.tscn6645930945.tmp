@@ -1,0 +1,55 @@
+[gd_scene format=4 uid="uid://7gh2tsr8gs18"]
+
+[ext_resource type="PackedScene" uid="uid://dwpie88hwg2ub" path="res://scenes/player.tscn" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://brohnn2iivtn7" path="res://scripts/main.gd" id="1_tbgi4"]
+[ext_resource type="Texture2D" uid="uid://c6s5578ylq3j2" path="res://assets/sprites/Blocks (16 x 16).png" id="2_0wfyh"]
+[ext_resource type="Script" uid="uid://cdusedw6hrtox" path="res://scripts/obstacle_spawner.gd" id="3_sugp2"]
+[ext_resource type="PackedScene" uid="uid://ckj4w6kij4itx" path="res://scenes/obstacle.tscn" id="4_jyhfs"]
+[ext_resource type="Script" uid="uid://b7mlcauv5fu22" path="res://scenes/ui.gd" id="6_tefeu"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sugp2"]
+texture = ExtResource("2_0wfyh")
+1:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+7:1/0 = 0
+7:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+9:1/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+4:3/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+4:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+9:4/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_jyhfs"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_sugp2")
+
+[node name="Main" type="Node2D" unique_id=1389369937]
+script = ExtResource("1_tbgi4")
+
+[node name="Player" parent="." unique_id=464184651 instance=ExtResource("1_o5qli")]
+position = Vector2(0, -8)
+
+[node name="GroundTileMap" type="TileMapLayer" parent="." unique_id=1493552543]
+tile_map_data = PackedByteArray("AAD3/wAAAAAHAAEAAAD4/wAAAAAHAAEAAAD5/wAAAAAHAAEAAAD6/wAAAAAHAAEAAAD7/wAAAAAHAAEAAAD8/wAAAAAHAAEAAAD9/wAAAAAHAAEAAAD+/wAAAAAHAAEAAAD//wAAAAAHAAEAAAAAAAAAAAAHAAEAAAABAAAAAAAHAAEAAAACAAAAAAAHAAEAAAADAAAAAAAHAAEAAAAEAAAAAAAHAAEAAAAFAAAAAAAHAAEAAAAGAAAAAAAHAAEAAAAHAAAAAAAHAAEAAAAIAAAAAAAHAAEAAAA=")
+tile_set = SubResource("TileSet_jyhfs")
+
+[node name="ObstacleSpawner" type="Node2D" parent="." unique_id=598248408]
+script = ExtResource("3_sugp2")
+obstacle_scene = ExtResource("4_jyhfs")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2126888278]
+zoom = Vector2(4, 4)
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=937152748]
+script = ExtResource("6_tefeu")
+
+[node name="ScoreLabel" type="Label" parent="UI" unique_id=1576959561]
+offset_right = 40.0
+offset_bottom = 23.0

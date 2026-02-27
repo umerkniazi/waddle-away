@@ -1,0 +1,199 @@
+[gd_scene format=4 uid="uid://7gh2tsr8gs18"]
+
+[ext_resource type="PackedScene" uid="uid://dwpie88hwg2ub" path="res://scenes/player.tscn" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://brohnn2iivtn7" path="res://scripts/main.gd" id="1_tbgi4"]
+[ext_resource type="Texture2D" uid="uid://b38krkx3q0snq" path="res://assets/sprites/Terrain (16 x 16).png" id="3_o6xl0"]
+[ext_resource type="Script" uid="uid://cdusedw6hrtox" path="res://scripts/obstacle_spawner.gd" id="3_sugp2"]
+[ext_resource type="PackedScene" uid="uid://ckj4w6kij4itx" path="res://scenes/obstacle.tscn" id="4_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://bhsq5sjuw4pah" path="res://scenes/ceiling_obstacle.tscn" id="6_o6xl0"]
+[ext_resource type="Script" uid="uid://b7mlcauv5fu22" path="res://scripts/ui.gd" id="6_tefeu"]
+[ext_resource type="PackedScene" uid="uid://dg05j5rd1dkcn" path="res://scenes/fence_obstacle.tscn" id="7_jkv2x"]
+[ext_resource type="Script" uid="uid://dv54o05pf21ny" path="res://scripts/ground.gd" id="9_85g3d"]
+[ext_resource type="FontFile" uid="uid://cdirse1w8c18g" path="res://assets/fonts/BoldPixels.ttf" id="9_choun"]
+[ext_resource type="Script" uid="uid://cogpomf41anqf" path="res://scripts/parallax_background.gd" id="11_ya4ey"]
+[ext_resource type="Texture2D" uid="uid://b6jy0qnxh8vsq" path="res://assets/sprites/3 - Big_mountain_BG.png" id="12_a8y0u"]
+[ext_resource type="Texture2D" uid="uid://bvykaoj2tpkwf" path="res://assets/sprites/2 - Smaller_mountains.png" id="13_jkv2x"]
+[ext_resource type="Texture2D" uid="uid://bhj2wdrse64oo" path="res://assets/sprites/1 - Snowy_foreground_area.png" id="14_jbj1t"]
+[ext_resource type="Script" uid="uid://ci40kb0pbkfk0" path="res://scripts/mobile_controls.gd" id="15_jkv2x"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_choun"]
+texture = ExtResource("3_o6xl0")
+3:1/0 = 0
+4:1/0 = 0
+4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:1/0 = 0
+11:1/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+11:2/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+9:3/0 = 0
+10:3/0 = 0
+11:3/0 = 0
+12:3/0 = 0
+13:3/0 = 0
+15:3/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+11:4/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+11:5/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+4:8/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ya4ey"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_choun")
+
+[node name="Main" type="Node2D" unique_id=1389369937]
+script = ExtResource("1_tbgi4")
+
+[node name="Player" parent="." unique_id=464184651 instance=ExtResource("1_o5qli")]
+z_index = 10
+position = Vector2(-8, -8)
+
+[node name="ObstacleSpawner" type="Node2D" parent="." unique_id=598248408]
+script = ExtResource("3_sugp2")
+obstacle_ice_scene = ExtResource("4_jyhfs")
+fence_obstacle_scene = ExtResource("7_jkv2x")
+ceiling_obstacle_scene = ExtResource("6_o6xl0")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2126888278]
+position = Vector2(108, -65)
+zoom = Vector2(4, 4)
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=937152748]
+script = ExtResource("6_tefeu")
+
+[node name="ScoreLabel" type="Label" parent="UI" unique_id=1576959561]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 28.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0.18039216, 0.18039216, 0.18039216, 1)
+theme_override_fonts/font = ExtResource("9_choun")
+theme_override_font_sizes/font_size = 32
+
+[node name="GameOverLabel" type="Label" parent="UI" unique_id=1015673954]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -44.0
+offset_right = 20.0
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.18039216, 0.18039216, 0.18039216, 1)
+theme_override_fonts/font = ExtResource("9_choun")
+theme_override_font_sizes/font_size = 64
+
+[node name="StartPrompt" type="Label" parent="UI" unique_id=1885247835]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.18039216, 0.18039216, 0.18039216, 1)
+theme_override_fonts/font = ExtResource("9_choun")
+theme_override_font_sizes/font_size = 64
+
+[node name="MobileControls" type="Control" parent="UI" unique_id=2010206456]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("15_jkv2x")
+show_touch_zones = false
+
+[node name="LeftZone" type="ColorRect" parent="UI/MobileControls" unique_id=1338643145]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.5
+anchor_bottom = 1.0
+color = Color(0, 1, 0, 0.1)
+
+[node name="RightZone" type="ColorRect" parent="UI/MobileControls" unique_id=570153022]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(1, 0, 0, 0.1)
+
+[node name="Ground" type="Node2D" parent="." unique_id=759932905]
+script = ExtResource("9_85g3d")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Ground" unique_id=1067292302]
+position = Vector2(-292, 0)
+tile_map_data = PackedByteArray("AAD9/wAAAAAEAAEAAAAPAAAAAAAEAAEAAAD+/wAAAAAEAAEAAAD//wAAAAAEAAEAAAAAAAAAAAAEAAEAAAABAAAAAAAEAAEAAAACAAAAAAAEAAEAAAADAAAAAAAEAAEAAAAEAAAAAAAEAAEAAAAFAAAAAAAEAAEAAAAGAAAAAAAEAAEAAAAHAAAAAAAEAAEAAAAIAAAAAAAEAAEAAAAJAAAAAAAEAAEAAAAKAAAAAAAEAAEAAAALAAAAAAAEAAEAAAAMAAAAAAAEAAEAAAANAAAAAAAEAAEAAAAOAAAAAAAEAAEAAAD8/wAAAAAEAAEAAAD7/wAAAAAEAAEAAAD7/wEAAAAEAAIAAAD8/wEAAAAEAAIAAAD9/wEAAAAEAAIAAAD+/wEAAAAEAAIAAAD//wEAAAAEAAIAAAAAAAEAAAAEAAIAAAABAAEAAAAEAAIAAAACAAEAAAAEAAIAAAADAAEAAAAEAAIAAAAEAAEAAAAEAAIAAAAFAAEAAAAEAAIAAAAGAAEAAAAEAAIAAAAHAAEAAAAEAAIAAAAIAAEAAAAEAAIAAAAJAAEAAAAEAAIAAAAKAAEAAAAEAAIAAAALAAEAAAAEAAIAAAAMAAEAAAAEAAIAAAANAAEAAAAEAAIAAAAOAAEAAAAEAAIAAAAPAAEAAAAEAAIAAAA=")
+tile_set = SubResource("TileSet_ya4ey")
+
+[node name="TileMapLayer2" type="TileMapLayer" parent="Ground" unique_id=719138765]
+position = Vector2(44, 0)
+tile_map_data = PackedByteArray("AAD9/wAAAAAEAAEAAAAPAAAAAAAEAAEAAAD+/wAAAAAEAAEAAAD//wAAAAAEAAEAAAAAAAAAAAAEAAEAAAABAAAAAAAEAAEAAAACAAAAAAAEAAEAAAADAAAAAAAEAAEAAAAEAAAAAAAEAAEAAAAFAAAAAAAEAAEAAAAGAAAAAAAEAAEAAAAHAAAAAAAEAAEAAAAIAAAAAAAEAAEAAAAJAAAAAAAEAAEAAAAKAAAAAAAEAAEAAAALAAAAAAAEAAEAAAAMAAAAAAAEAAEAAAANAAAAAAAEAAEAAAAOAAAAAAAEAAEAAAD8/wAAAAAEAAEAAAD7/wAAAAAEAAEAAAD7/wEAAAAEAAIAAAD8/wEAAAAEAAIAAAD9/wEAAAAEAAIAAAD+/wEAAAAEAAIAAAD//wEAAAAEAAIAAAAAAAEAAAAEAAIAAAABAAEAAAAEAAIAAAACAAEAAAAEAAIAAAADAAEAAAAEAAIAAAAEAAEAAAAEAAIAAAAFAAEAAAAEAAIAAAAGAAEAAAAEAAIAAAAHAAEAAAAEAAIAAAAIAAEAAAAEAAIAAAAJAAEAAAAEAAIAAAAKAAEAAAAEAAIAAAALAAEAAAAEAAIAAAAMAAEAAAAEAAIAAAANAAEAAAAEAAIAAAAOAAEAAAAEAAIAAAAPAAEAAAAEAAIAAAA=")
+tile_set = SubResource("TileSet_ya4ey")
+
+[node name="TileMapLayer3" type="TileMapLayer" parent="Ground" unique_id=344323030]
+position = Vector2(380, 0)
+tile_map_data = PackedByteArray("AAD9/wAAAAAEAAEAAAAPAAAAAAAEAAEAAAD+/wAAAAAEAAEAAAD//wAAAAAEAAEAAAAAAAAAAAAEAAEAAAABAAAAAAAEAAEAAAACAAAAAAAEAAEAAAADAAAAAAAEAAEAAAAEAAAAAAAEAAEAAAAFAAAAAAAEAAEAAAAGAAAAAAAEAAEAAAAHAAAAAAAEAAEAAAAIAAAAAAAEAAEAAAAJAAAAAAAEAAEAAAAKAAAAAAAEAAEAAAALAAAAAAAEAAEAAAAMAAAAAAAEAAEAAAANAAAAAAAEAAEAAAAOAAAAAAAEAAEAAAD8/wAAAAAEAAEAAAD7/wAAAAAEAAEAAAD7/wEAAAAEAAIAAAD8/wEAAAAEAAIAAAD9/wEAAAAEAAIAAAD+/wEAAAAEAAIAAAD//wEAAAAEAAIAAAAAAAEAAAAEAAIAAAABAAEAAAAEAAIAAAACAAEAAAAEAAIAAAADAAEAAAAEAAIAAAAEAAEAAAAEAAIAAAAFAAEAAAAEAAIAAAAGAAEAAAAEAAIAAAAHAAEAAAAEAAIAAAAIAAEAAAAEAAIAAAAJAAEAAAAEAAIAAAAKAAEAAAAEAAIAAAALAAEAAAAEAAIAAAAMAAEAAAAEAAIAAAANAAEAAAAEAAIAAAAOAAEAAAAEAAIAAAAPAAEAAAAEAAIAAAA=")
+tile_set = SubResource("TileSet_ya4ey")
+
+[node name="ParallaxBG" type="Node2D" parent="." unique_id=1889553745]
+position = Vector2(0, -192)
+script = ExtResource("11_ya4ey")
+
+[node name="SkyLayer" type="Parallax2D" parent="ParallaxBG" unique_id=452867045]
+z_index = -3
+repeat_size = Vector2(288, 0)
+repeat_times = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBG/SkyLayer" unique_id=1490839402]
+texture = ExtResource("12_a8y0u")
+centered = false
+
+[node name="MountainLayer" type="Parallax2D" parent="ParallaxBG" unique_id=838830341]
+z_index = -2
+repeat_size = Vector2(288, 0)
+repeat_times = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBG/MountainLayer" unique_id=1054734776]
+texture = ExtResource("13_jkv2x")
+centered = false
+
+[node name="ForegroundLayer" type="Parallax2D" parent="ParallaxBG" unique_id=275974447]
+z_index = -1
+repeat_size = Vector2(288, 0)
+repeat_times = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBG/ForegroundLayer" unique_id=482385789]
+texture = ExtResource("14_jbj1t")
+centered = false

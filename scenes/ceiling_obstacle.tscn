@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bhsq5sjuw4pah"]
+
+[ext_resource type="Texture2D" uid="uid://c6s5578ylq3j2" path="res://assets/sprites/Blocks (16 x 16).png" id="2_266r4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_36pal"]
+size = Vector2(16, 16)
+
+[node name="CeilingObstacle" type="Area2D" unique_id=930139773]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1407779177]
+texture = ExtResource("2_266r4")
+region_enabled = true
+region_rect = Rect2(112, 16, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2104303504]
+shape = SubResource("RectangleShape2D_36pal")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
