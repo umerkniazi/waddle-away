@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://dg05j5rd1dkcn"]
 
-[ext_resource type="Texture2D" uid="uid://bxulaij8suvfc" path="res://assets/sprites/Winter_entities (16 x 16).png" id="1_vev6k"]
+[ext_resource type="Texture2D" uid="uid://dtcilsgxsdh0p" path="res://assets/sprites/Winter_entities (16 x 16).png" id="1_vev6k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d17g5"]
-size = Vector2(47.0625, 16)
+size = Vector2(44, 16)
 
 [node name="FenceObstacle" type="Area2D" unique_id=92437223]
 
