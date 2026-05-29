@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dtcilsgxsdh0p" path="res://assets/sprites/Winter_entities (16 x 16).png" id="1_vev6k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d17g5"]
-size = Vector2(44, 16)
+size = Vector2(38, 16)
 
 [node name="FenceObstacle" type="Area2D" unique_id=92437223]
 
